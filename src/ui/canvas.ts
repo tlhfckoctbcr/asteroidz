@@ -1,7 +1,7 @@
 export class Canvas {
   canvas: HTMLCanvasElement | null = null;
 
-  context: CanvasRenderingContext2D | null = null;
+  ctx: CanvasRenderingContext2D | null = null;
 
   constructor() {
     this.init();
@@ -9,7 +9,9 @@ export class Canvas {
 
   init() {
     this.canvas = this.createCanvas(500, 500);
-    this.context = this.createContext(this.canvas);
+    this.ctx = this.createContext(this.canvas);
+    this.ctx.fillStyle = "black";
+    this.ctx.fillRect(10, 10, 150, 100);
     document.body.appendChild(this.canvas);
   }
 
@@ -24,8 +26,6 @@ export class Canvas {
   private createContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
     const context = canvas.getContext("2d");
     if (!context) throw new Error('Canvas context not found.');
-    context?.scale(20, 20);
-
     return context;
   }
 }
